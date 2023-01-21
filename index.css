@@ -2,10 +2,11 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    transition: 1s all;
 }
 
 .container {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background: linear-gradient(90deg, #bbb, #eee, #eee, #bbb);
     display: flex;
@@ -17,12 +18,13 @@
 .desktopContainer, .galleryContainer {
     width: 100%;
     flex: 1;
+    min-height: 50vh;
+    flex-shrink: 0;
 }
 
 .desktopContainer{
     position: relative;
     width: 100%;
-    flex: 1;
     overflow-x: hidden;
 }
 .desktopContainer img{
@@ -69,7 +71,6 @@
 }
 .galleryContainer_carousell{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -79,13 +80,58 @@
 .galleryContainer_image-container{
     flex-shrink: 0;
     width: 250px;
-    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
 }
+.galleryContainer_description {
+    display: none;
+    padding: 2px;
+    font-weight: bold;
+}
+.galleryContainer_description .buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.galleryContainer_image-container .galleryContainer_description a {
+    display: inline-block;
+    text-decoration: none;
+    color:white;
+    padding: 10px 20px;
+    font-weight: bold;
+    background: linear-gradient(140deg, rgb(223, 111, 31), rgb(114, 51, 6));
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,.7);
+}
+
 .galleryContainer_image{
     box-shadow: 0px 3px 10px 1px rgba(0,0,0,.5);
     width: 230px;
-    height: 100%;
+    height: 50vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.galleryContainer_image-container.showDetail .galleryContainer_image {
+    width: 400px;
+    transition: 1s;
+}
+.galleryContainer_image-container.showDetail {
+    width: 430px;
+}
+@media screen and (max-width:500px) {
+    .galleryContainer_image-container.showDetail, .galleryContainer_image-container.showDetail .galleryContainer_image {
+        width: 250px;
+    }
+}
+
+.galleryContainer_image-container.showDetail .galleryContainer_description{
+    display: block;
 }
